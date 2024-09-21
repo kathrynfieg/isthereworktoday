@@ -1,2 +1,2 @@
-export * from './Holiday';
+export * from './NagerDateHoliday';
 export * from './LocationIQLocation';
