@@ -38,8 +38,8 @@
 
     ```bash
     VITE_LOCATIONIQ_API_KEY=<your-locationiq-api-key>
-    VITE_LOCATIONIQ_API=https://us1.locationiq.com/v1/reverse.php
-    VITE_NAGER_DATE_API=https://date.nager.at/api/v2
+    VITE_LOCATIONIQ_API=https://us1.locationiq.com/v1/reverse
+    VITE_NAGER_DATE_API=https://date.nager.at/api/v3
     ```
 
 4.  Start the development server:
