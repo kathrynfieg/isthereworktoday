@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/messages.ts","./src/utils.ts","./src/vite-env.d.ts","./src/api/api.ts","./src/api/index.ts","./src/composables/index.ts","./src/composables/useholidayinfo.ts","./src/models/holiday.ts","./src/models/location.ts","./src/models/index.ts","./src/app.vue"],"errors":true,"version":"5.6.2"}
