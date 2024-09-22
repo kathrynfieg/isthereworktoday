@@ -9,7 +9,6 @@ export const workdayMessages = [
   "Rise and shine! It's work o'clock. ⏰",
   'Your dreams of staying in bed have been canceled. 🛏️',
   "Better pack lunch. It's a regular ol' workday. 🥪",
-  'Sorry, no holiday today. Guess you’re stuck with us. 🙃',
   'Well, someone’s gotta pay the bills... 💸',
   'Who needs a holiday when you have endless emails? 📧',
   'Don’t worry, the weekend is coming. Eventually... ⏳',
@@ -26,7 +25,7 @@ export const holidayMessages = [
   'Yes! No work today. 🎉',
   "Put the laptop away. It's time to chill. 🛋️",
   'Holiday mode: activated. 🍹',
-  'Enjoy your day off! You earned it. 🌟',
+  'Enjoy your day off! You deserve it. 🌟',
   'You’ve got the green light to do absolutely nothing. 🚦',
   'Why work when you can holiday? 😎',
   'The universe has gifted you a free day! 🎁',
@@ -57,12 +56,12 @@ export const errorMessages = [
   'Yikes! Something went wrong. Even computers need a day off sometimes! Please ensure your location is on and try again later.',
   'Uh-oh! We couldn’t fetch the info. Let’s blame the weather! Please ensure your location is on and try again later.',
   'Error 404: Holiday not found! Maybe it’s just being shy? Please ensure your location is on and try again later.',
-  'Looks like the holiday gods are not smiling today. Try again later! Please ensure your location is on and try again later.',
+  'Uh-oh! Looks like the holiday gods are not smiling today. Please ensure your location is on and try again later.',
   'Whoops! It seems like we took a wrong turn on the internet. Please ensure your location is on and try again later.',
   'Uh-oh! Our holiday detector is malfunctioning. Don’t worry, it happens! Please ensure your location is on and try again later.',
   'We tried to find the holiday, but it must be on vacation itself! Please ensure your location is on and try again later.',
-  'Looks like our holiday map is lost! Let’s find it together. Please ensure your location is on and try again later.',
-  'Something’s not quite right. Even the holidays need a break sometimes! Please ensure your location is on and try again later.',
+  'Yikes! Looks like our holiday map is lost! Let’s find it together. Please ensure your location is on and try again later.',
+  'Oops! Something’s not quite right. Even the holidays need a break sometimes! Please ensure your location is on and try again later.',
 ];
 
 export const notInAustraliaMessages = [

@@ -1,12 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  /* font-family: 'Concert One', cursive; */
+  /* font-family: 'Cabin', sans-serif; */
 }
 
 body {
+  /* font-family: 'Playpen Sans', sans-serif; */
+  font-family: 'Concert One', cursive;
+  /* font-family: 'Cabin', sans-serif; */
+
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #fafafa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* body {
   margin: 0;
   display: flex;
   place-items: center;
@@ -19,4 +43,4 @@ body {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
+} */
