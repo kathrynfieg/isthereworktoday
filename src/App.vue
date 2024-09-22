@@ -48,7 +48,7 @@ onMounted(async () => {
         <div class="">
           <span class="text-[#01b695]">ISTR</span>WRK<span
             class="text-[#eeb3e7]"
-            >TDY</span
+            >2DAY</span
           >
         </div>
       </div>
