@@ -3,6 +3,7 @@ import { Location, Holiday, County, State, Territory } from '@/models';
 
 const locationIqApi = import.meta.env.VITE_LOCATIONIQ_API;
 const nagerDateApi = import.meta.env.VITE_NAGER_DATE_API;
+const giphyApi = import.meta.env.VITE_GIPHY_API_KEY;
 
 export const getReversedLocation = async (lat: number, lon: number) => {
   const apiKey = import.meta.env.VITE_LOCATIONIQ_API_KEY;
@@ -50,6 +51,18 @@ export const getIsTodayAuHoliday = async (state?: County) => {
     return response.data;
   } catch (e) {
     throw e;
+  }
+};
+
+export const getRandomGif = async (mood: 'celebrate' | 'sad') => {
+  try {
+    const endpoint = `https://api.giphy.com/v1/gifs/random?api_key=${giphyApi}&tag=${mood}&rating=g`;
+    const response = await axios.get(endpoint);
+
+    return response.data.data.images.original.url;
+  } catch (error) {
+    console.error('Error fetching GIF:', error);
+    return null;
   }
 };
 
