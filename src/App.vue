@@ -7,6 +7,7 @@
  * - more holiday info if holiday
  * - countdown for next holiday
  * - readme update for .env
+ * - celebration animation
  */
 import { useHolidayInfo } from '@/composables';
 import { getRandomGif } from '@/api';
