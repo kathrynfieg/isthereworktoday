@@ -1,108 +1,45 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useQuery } from '@tanstack/vue-query';
-import { useGeolocation } from '@vueuse/core';
+import { useHolidayInfo } from '@/composables';
+
+const { geoError, isLoading, userLocation, todaysHoliday, allHolidays } =
+  useHolidayInfo();
+
 import {
-  getReversedLocation,
-  getAuPublicHolidays,
-  getIsTodayAuHoliday,
-} from '@/api';
-import { County, Holiday } from './models';
+  workdayMessages,
+  holidayMessages,
+  loadingMessages,
+  locationPermissionMessage,
+  errorMessages,
+  notInAustraliaMessages,
+} from '@/messages';
+import { getRandomMessage } from '@/utils';
 
-const { coords, error, isSupported } = useGeolocation();
-
-const isValidCoords = computed(() => {
-  const latitude = coords.value.latitude;
-  const longitude = coords.value.longitude;
-  return (
-    isSupported &&
-    typeof latitude === 'number' &&
-    typeof longitude === 'number' &&
-    isFinite(latitude) &&
-    isFinite(longitude)
-  );
-});
-
-const { data: userLocation, isLoading: isLoadingUserLocation } = useQuery({
-  queryKey: ['userLocation', coords, isValidCoords],
-  queryFn: () =>
-    getReversedLocation(coords.value.latitude, coords.value.longitude),
-  enabled: isValidCoords,
-});
-
-const { data: allPublicHolidays, isLoading: isLoadingPublicHolidays } =
-  useQuery({
-    queryKey: ['allPublicHolidays'],
-    queryFn: () => {
-      const currentYear = new Date().getFullYear();
-      return getAuPublicHolidays(currentYear);
-    },
-  });
-
-function getAllPublicHolidays(holidays: Holiday[], state: County) {
-  return holidays.filter(
-    (holiday) => holiday.counties?.includes(state) || !holiday.counties
-  );
-}
-
-const allHolidaysInState = computed(() => {
-  if (allPublicHolidays.value && userLocation.value?.stateCode)
-    return getAllPublicHolidays(
-      allPublicHolidays.value,
-      userLocation.value?.stateCode
-    );
-  return [];
-});
-
-const { data: isTodayAuHoliday, isLoading: isLoadingTodayHoliday } = useQuery({
-  queryKey: ['isTodayAuHoliday'],
-  queryFn: () => getIsTodayAuHoliday(userLocation.value?.stateCode),
-});
+const randomErrorMessage = getRandomMessage(errorMessages);
+const randomLoadingMessage = getRandomMessage(loadingMessages);
+const randomWorkdayMessage = getRandomMessage(workdayMessages);
+const randomHolidayMessage = getRandomMessage(holidayMessages);
+const randomNotAustraliaMessage = getRandomMessage(notInAustraliaMessages);
 </script>
 
 <template>
-  <div>isLoadingUserLocation: {{ isLoadingUserLocation }}</div>
-  <div>isLoadingPublicHolidays: {{ isLoadingPublicHolidays }}</div>
-  <div>isLoadingTodayHoliday: {{ isLoadingTodayHoliday }}</div>
-  <br />
-
-  <div>error:{{ error?.message ? error.message : 'NO error' }}</div>
-
-  <br />
-
-  <div>
-    <strong>User Country: </strong>{{ userLocation?.country }} ({{
-      userLocation?.country_code
-    }})
+  <h1>Do I have work today? 🤞</h1>
+  <div v-if="isLoading">
+    <h2>{{ randomLoadingMessage }}</h2>
+    <br />
+    {{ locationPermissionMessage }}
   </div>
 
-  <br />
+  <h2 v-else-if="geoError">
+    {{ randomErrorMessage }}
+  </h2>
 
-  <div><strong>User State: </strong>{{ userLocation?.state }}</div>
+  <h2 v-else-if="userLocation?.country_code != 'au'">
+    {{ randomNotAustraliaMessage }}
+  </h2>
 
-  <br />
-
-  <div>
-    <strong>Is Today a holiday: </strong>{{ Boolean(isTodayAuHoliday) }}
-  </div>
-
-  <br />
-
-  <div>
-    <strong>All Public Holidays in {{ userLocation?.stateCode }} </strong>
-    <!-- {{ allHolidaysInState?.map((holiday) => holiday.localName) }} -->
-    <div v-for="holiday in allHolidaysInState" :key="holiday.name">
-      <div>
-        <strong>{{ holiday.date }}</strong> {{ holiday.localName }}
-      </div>
-    </div>
-  </div>
-  <br />
-
-  <div>
-    <strong>All Public Holidays in Australia: </strong
-    >{{ allPublicHolidays?.map((holiday) => holiday.localName) }}
-  </div>
+  <h2 v-else>
+    {{ todaysHoliday ? randomHolidayMessage : randomWorkdayMessage }}
+  </h2>
 </template>
 
 <style scoped></style>
