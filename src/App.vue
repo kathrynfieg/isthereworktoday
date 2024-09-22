@@ -46,8 +46,10 @@ onMounted(async () => {
       <div class="flex items-center gap-2 text-sm">
         <img class="w-5" src="@/assets/logo.png" />
         <div class="">
-          <span class="text-[#01b695]">IS THERE</span> WORK
-          <span class="text-[#eeb3e7]">TODAY?</span>
+          <span class="text-[#01b695]">ISTR</span>WRK<span
+            class="text-[#eeb3e7]"
+            >TDY</span
+          >
         </div>
       </div>
 
