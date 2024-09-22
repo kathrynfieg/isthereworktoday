@@ -5,7 +5,6 @@ export const workdayMessages = [
   'It’s a regular day... unless you invent a holiday! 🎨',
   'Not today, friend. Back to the grindstone. 🚧',
   'Get that to-do list ready. It’s time to adult. 📝',
-  'Why aren’t you on a tropical beach somewhere? 🏖️',
   "Rise and shine! It's work o'clock. ⏰",
   'Your dreams of staying in bed have been canceled. 🛏️',
   "Better pack lunch. It's a regular ol' workday. 🥪",
@@ -67,7 +66,7 @@ export const errorMessages = [
 export const notInAustraliaMessages = [
   "Looks like you're not down under! This app is for Aussie folks only.",
   "Oi! You're outside of Australia. Come back when you're in the land of kangaroos!",
-  'We love your enthusiasm, but this app is strictly for Australians.',
+  'We love your enthusiasm, but this app is strictly for within Australia.',
   "Sorry mate, but you’re not in Australia. Try again when you're in the right time zone!",
   'You’re on a different continent! This app only serves the wonderful land of Oz.',
   'Hey there, global traveler! Unfortunately, this app is made just for those in Australia.',
