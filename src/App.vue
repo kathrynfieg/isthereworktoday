@@ -2,7 +2,6 @@
 import { computed } from 'vue';
 import { useQuery } from '@tanstack/vue-query';
 import { useGeolocation } from '@vueuse/core';
-import { NagerDateAUCounty } from '@/models';
 import {
   getReversedLocation,
   getAuPublicHolidays,
@@ -41,7 +40,7 @@ const { data: allPublicHolidays, isLoading: isLoadingPublicHolidays } =
 
 const { data: isTodayAuHoliday, isLoading: isLoadingTodayHoliday } = useQuery({
   queryKey: ['isTodayAuHoliday'],
-  queryFn: () => getIsTodayAuHoliday(NagerDateAUCounty.SouthAustralia),
+  queryFn: () => getIsTodayAuHoliday(userLocation.value?.stateCode),
 });
 </script>
 
@@ -56,14 +55,18 @@ const { data: isTodayAuHoliday, isLoading: isLoadingTodayHoliday } = useQuery({
   <br />
 
   <div>
-    <strong>User Country: </strong>{{ userLocation?.address.country }} ({{
-      userLocation?.address.country_code
+    <strong>User Country: </strong>{{ userLocation?.country }} ({{
+      userLocation?.country_code
     }})
   </div>
 
   <br />
 
-  <div><strong>User State: </strong>{{ userLocation?.address.state }}</div>
+  <div><strong>User State: </strong>{{ userLocation?.state }}</div>
+
+  <br />
+
+  <div><strong>State Code: </strong>{{ userLocation?.stateCode }}</div>
 
   <br />
 
