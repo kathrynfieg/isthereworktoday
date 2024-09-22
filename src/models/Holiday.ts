@@ -1,4 +1,4 @@
-export interface NagerDateHoliday {
+export interface Holiday {
   date: string;
   localName: string;
   name: string;
@@ -7,10 +7,10 @@ export interface NagerDateHoliday {
   global: boolean;
   counties?: string[] | null; // note: if counties	=== null, its a holiday for all of australia
   launchYear: number;
-  types: NagerDateHolidayType[];
+  types: HolidayType[];
 }
 
-export enum NagerDateHolidayType {
+export enum HolidayType {
   Public = 'Public',
   Bank = 'Bank',
   School = 'School',
@@ -19,11 +19,11 @@ export enum NagerDateHolidayType {
   Observance = 'Observance',
 }
 
-export enum NagerDateAUCountryCode {
+export enum AUCountryCode {
   Australia = 'AU',
 }
 
-export enum NagerDateAUCounty {
+export enum County {
   SouthAustralia = 'AU-SA',
   NorthernTerritory = 'AU-NT',
   Queensland = 'AU-QLD',

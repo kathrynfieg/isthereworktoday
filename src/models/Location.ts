@@ -1,4 +1,4 @@
-export interface LocationIQLocation {
+export interface Location {
   place_id: string;
   licence: string;
   osm_type: string;
@@ -6,11 +6,11 @@ export interface LocationIQLocation {
   lat: string;
   lon: string;
   display_name: string;
-  address: LocationIQAddress;
+  address: Address;
   boundingbox?: string[];
 }
 
-export interface LocationIQAddress {
+export interface Address {
   government?: string;
   house_number?: string;
   road?: string;
@@ -18,21 +18,22 @@ export interface LocationIQAddress {
   suburb?: string;
   city?: string;
   state_district?: string;
+  territory?: string;
   state?: string;
   postcode?: string;
   country?: string;
   country_code?: string;
 }
 
-export enum LocationIQAuCountryCode {
+export enum CountryCode {
   Australia = 'au',
 }
 
-export enum LocationIQAuCountry {
+export enum Country {
   Australia = 'Australia',
 }
 
-export enum LocationIQAuState {
+export enum State {
   SouthAustralia = 'South Australia',
   NorthernTerritory = 'Northern Territory',
   Queensland = 'Queensland',
@@ -42,6 +43,6 @@ export enum LocationIQAuState {
   WesternAustralia = 'Western Australia',
 }
 
-export enum LocationIQAuTerritory {
+export enum Territory {
   AustralianCapitalTerritory = 'Australian Capital Territory',
 }
