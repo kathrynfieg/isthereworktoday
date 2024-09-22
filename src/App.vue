@@ -7,6 +7,7 @@ import {
   getAuPublicHolidays,
   getIsTodayAuHoliday,
 } from '@/api';
+import { County, Holiday } from './models';
 
 const { coords, error, isSupported } = useGeolocation();
 
@@ -38,6 +39,21 @@ const { data: allPublicHolidays, isLoading: isLoadingPublicHolidays } =
     },
   });
 
+function getAllPublicHolidays(holidays: Holiday[], state: County) {
+  return holidays.filter(
+    (holiday) => holiday.counties?.includes(state) || !holiday.counties
+  );
+}
+
+const allHolidaysInState = computed(() => {
+  if (allPublicHolidays.value && userLocation.value?.stateCode)
+    return getAllPublicHolidays(
+      allPublicHolidays.value,
+      userLocation.value?.stateCode
+    );
+  return [];
+});
+
 const { data: isTodayAuHoliday, isLoading: isLoadingTodayHoliday } = useQuery({
   queryKey: ['isTodayAuHoliday'],
   queryFn: () => getIsTodayAuHoliday(userLocation.value?.stateCode),
@@ -66,10 +82,6 @@ const { data: isTodayAuHoliday, isLoading: isLoadingTodayHoliday } = useQuery({
 
   <br />
 
-  <div><strong>State Code: </strong>{{ userLocation?.stateCode }}</div>
-
-  <br />
-
   <div>
     <strong>Is Today a holiday: </strong>{{ Boolean(isTodayAuHoliday) }}
   </div>
@@ -77,7 +89,18 @@ const { data: isTodayAuHoliday, isLoading: isLoadingTodayHoliday } = useQuery({
   <br />
 
   <div>
-    <strong>All Public Holidays: </strong
+    <strong>All Public Holidays in {{ userLocation?.stateCode }} </strong>
+    <!-- {{ allHolidaysInState?.map((holiday) => holiday.localName) }} -->
+    <div v-for="holiday in allHolidaysInState" :key="holiday.name">
+      <div>
+        <strong>{{ holiday.date }}</strong> {{ holiday.localName }}
+      </div>
+    </div>
+  </div>
+  <br />
+
+  <div>
+    <strong>All Public Holidays in Australia: </strong
     >{{ allPublicHolidays?.map((holiday) => holiday.localName) }}
   </div>
 </template>
