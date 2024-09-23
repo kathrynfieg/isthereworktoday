@@ -10,7 +10,6 @@
  */
 import { useHolidayInfo } from '@/composables';
 import { getRandomGif } from '@/api';
-import dayjs from 'dayjs';
 
 const { geoError, isLoading, userLocation, todaysHoliday, allHolidays } =
   useHolidayInfo();
@@ -26,6 +25,8 @@ import {
 import { getRandomMessage } from '@/utils';
 import { onMounted, ref } from 'vue';
 import Countdown from '@/components/Countdown.vue';
+import MainLogo from '@/components/MainLogo.vue';
+import Navbar from '@/components/Navbar.vue';
 
 const randomErrorMessage = getRandomMessage(errorMessages);
 const randomLoadingMessage = getRandomMessage(loadingMessages);
@@ -44,43 +45,13 @@ onMounted(async () => {
 
 <template>
   <div class="flex flex-col min-h-dvh items-center container">
-    <nav class="w-dvw p-4 flex items-start justify-between flex-wrap">
-      <div class="flex items-center gap-2 text-sm">
-        <img class="w-5" src="@/assets/logo.png" />
-        <div>
-          <span class="text-[#01b695]">ISTR</span>WRK<span
-            class="text-[#eeb3e7]"
-            >2DAY
-          </span>
-        </div>
-      </div>
-
-      <div class="text-right flex gap-2">
-        <div>
-          {{ userLocation?.state ?? userLocation?.territory }}
-          •
-          {{ dayjs(new Date()).format('MMMM D, YYYY') }}
-        </div>
-      </div>
-    </nav>
+    <Navbar :location="userLocation?.state ?? userLocation?.territory" />
 
     <div
       class="flex-1 flex flex-col md:flex-row gap-5 py-5 md:gap-16 justify-center items-center w-full"
     >
       <div class="w-full md:w-1/2 flex flex-col justify-center">
-        <h1
-          class="text-3xl md:text-6xl flex flex-col gap-3 -rotate-6 self-center"
-        >
-          <div class="bg-[#01b695] px-6 py-2 rounded-lg w-fit">IS THERE</div>
-          <div
-            class="bg-white px-8 py-2 rounded-lg text-6xl md:text-9xl w-fit ml-5"
-          >
-            WORK
-          </div>
-          <div class="bg-[#eeb3e7] px-6 py-2 rounded-lg w-fit ml-28">
-            TODAY?
-          </div>
-        </h1>
+        <MainLogo />
       </div>
 
       <div class="w-full md:w-1/2">
