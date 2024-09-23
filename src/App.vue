@@ -11,6 +11,7 @@
  */
 import { useHolidayInfo } from '@/composables';
 import { getRandomGif } from '@/api';
+import dayjs from 'dayjs';
 
 const { geoError, isLoading, userLocation, todaysHoliday } = useHolidayInfo();
 
@@ -24,6 +25,7 @@ import {
 } from '@/messages';
 import { getRandomMessage } from '@/utils';
 import { onMounted, ref } from 'vue';
+import Countdown from '@/components/Countdown.vue';
 
 const randomErrorMessage = getRandomMessage(errorMessages);
 const randomLoadingMessage = getRandomMessage(loadingMessages);
@@ -53,13 +55,11 @@ onMounted(async () => {
         </div>
       </div>
 
-      <div class="text-right">
+      <div class="text-right flex gap-2">
         <div>
           {{ userLocation?.state ?? userLocation?.territory }}
-        </div>
-        <div>
-          {{ new Date().getDate() }} {{ new Date().getMonth() }}
-          {{ new Date().getFullYear() }}
+          •
+          {{ dayjs(new Date()).format('MMMM D, YYYY') }}
         </div>
       </div>
     </nav>
@@ -127,12 +127,7 @@ onMounted(async () => {
                 :src="workdayGif"
                 alt="Workday GIF"
               />
-              <!-- TODO: add countdown -->
-              <div class="text-4xl mt-6">
-                You're next holiday is
-                <span class="underline">Christmas</span> in
-                <span class="text-5xl">49</span> days
-              </div>
+              <Countdown />
             </div>
           </h2>
         </div>
