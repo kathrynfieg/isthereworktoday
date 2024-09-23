@@ -80,9 +80,10 @@ onMounted(async () => {
       </div>
 
       <div class="w-1/2">
-        <div class="text-2xl">
+        <div class="text-3xl">
           <div v-if="isLoading">
             <h2>{{ randomLoadingMessage }}</h2>
+            <img class="w-60 self-center mt-4" src="@/assets/loading2.gif" />
             <br />
             <p class="text-sm text-gray-500">
               {{ locationPermissionMessage }}
@@ -126,6 +127,12 @@ onMounted(async () => {
                 :src="workdayGif"
                 alt="Workday GIF"
               />
+              <!-- TODO: add countdown -->
+              <div class="text-4xl mt-6">
+                You're next holiday is
+                <span class="underline">Christmas</span> in
+                <span class="text-5xl">49</span> days
+              </div>
             </div>
           </h2>
         </div>
