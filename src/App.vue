@@ -44,7 +44,7 @@ onMounted(async () => {
 
 <template>
   <div class="flex flex-col min-h-dvh items-center container">
-    <nav class="w-dvw p-4 flex items-start justify-between">
+    <nav class="w-dvw p-4 flex items-start justify-between flex-wrap">
       <div class="flex items-center gap-2 text-sm">
         <img class="w-5" src="@/assets/logo.png" />
         <div>
@@ -65,12 +65,16 @@ onMounted(async () => {
     </nav>
 
     <div
-      class="flex-1 flex flex-col md:flex-row gap-20 justify-center items-center w-full"
+      class="flex-1 flex flex-col md:flex-row gap-5 py-5 md:gap-16 justify-center items-center w-full"
     >
-      <div class="w-1/2 flex flex-col justify-center">
-        <h1 class="text-5xl flex flex-col gap-3 -rotate-6 self-center">
+      <div class="w-full md:w-1/2 flex flex-col justify-center">
+        <h1
+          class="text-3xl md:text-6xl flex flex-col gap-3 -rotate-6 self-center"
+        >
           <div class="bg-[#01b695] px-6 py-2 rounded-lg w-fit">IS THERE</div>
-          <div class="bg-white px-8 py-2 rounded-lg text-8xl w-fit ml-5">
+          <div
+            class="bg-white px-8 py-2 rounded-lg text-6xl md:text-9xl w-fit ml-5"
+          >
             WORK
           </div>
           <div class="bg-[#eeb3e7] px-6 py-2 rounded-lg w-fit ml-28">
@@ -79,7 +83,7 @@ onMounted(async () => {
         </h1>
       </div>
 
-      <div class="w-1/2">
+      <div class="w-full md:w-1/2">
         <div class="text-3xl">
           <div v-if="isLoading" class="flex flex-col gap-6">
             <p>{{ randomLoadingMessage }}</p>
