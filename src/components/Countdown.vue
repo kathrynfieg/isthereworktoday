@@ -2,8 +2,14 @@
 import { ref, onMounted, computed } from 'vue';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
-import { getAuPublicHolidays } from '@/api';
 import { Holiday } from '@/models';
+
+const props = defineProps({
+  allHolidays: {
+    type: Array<Holiday>,
+    default: [],
+  },
+});
 
 dayjs.extend(duration);
 
@@ -44,9 +50,8 @@ const updateCountdown = () => {
   };
 };
 
-const initializeCountdown = async () => {
-  const currentYear = new Date().getFullYear();
-  const holidays = await getAuPublicHolidays(currentYear);
+const initializeCountdown = () => {
+  const holidays = props.allHolidays;
   findNextHoliday(holidays);
 
   if (nextHoliday.value) {
@@ -68,18 +73,21 @@ onMounted(() => {
 
 <template>
   <div v-if="nextHoliday">
-    <div class="text-2xl mt-6">
-      But hey, don't worry - the next holiday is just around the corner! Next
-      one's
-      <span class="underline">{{ nextHoliday.localName }}</span> on
-      <span class="underline">{{ formattedNextHolidayDate }}</span
-      >.
-      <br />
-      <br />
-      <span class="text-5xl">{{ timeUntilNextHoliday.days }}</span> d
-      <span class="text-5xl">{{ timeUntilNextHoliday.hours }}</span> h
-      <span class="text-5xl">{{ timeUntilNextHoliday.minutes }}</span> m
-      <span class="text-5xl">{{ timeUntilNextHoliday.seconds }}</span> s to go!
+    <div class="text-2xl flex flex-col gap-6">
+      <div>
+        But hey, don't worry - the next holiday is just around the corner! Next
+        one's
+        <span class="underline">{{ nextHoliday.localName }}</span> on
+        <span class="underline">{{ formattedNextHolidayDate }}</span
+        >.
+      </div>
+      <div>
+        <span class="text-5xl">{{ timeUntilNextHoliday.days }}</span> d
+        <span class="text-5xl">{{ timeUntilNextHoliday.hours }}</span> h
+        <span class="text-5xl">{{ timeUntilNextHoliday.minutes }}</span> m
+        <span class="text-5xl">{{ timeUntilNextHoliday.seconds }}</span> s to
+        go!
+      </div>
     </div>
   </div>
   <div v-else>

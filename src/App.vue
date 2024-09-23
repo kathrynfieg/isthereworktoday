@@ -3,7 +3,6 @@
  * TODO
  * - Improve geo error check
  * - Responsive design mobile
- * - date
  * - more holiday info if holiday
  * - countdown for next holiday
  * - readme update for .env
@@ -13,7 +12,8 @@ import { useHolidayInfo } from '@/composables';
 import { getRandomGif } from '@/api';
 import dayjs from 'dayjs';
 
-const { geoError, isLoading, userLocation, todaysHoliday } = useHolidayInfo();
+const { geoError, isLoading, userLocation, todaysHoliday, allHolidays } =
+  useHolidayInfo();
 
 import {
   workdayMessages,
@@ -127,7 +127,7 @@ onMounted(async () => {
                 :src="workdayGif"
                 alt="Workday GIF"
               />
-              <Countdown />
+              <Countdown :all-holidays="allHolidays" />
             </div>
           </h2>
         </div>
@@ -139,11 +139,10 @@ onMounted(async () => {
 <style scoped>
 .gif {
   width: 100%;
-  max-width: 350px;
+  max-width: 300px;
   height: auto;
   display: block;
   margin: 0 auto;
-
   margin-top: 2rem;
 }
 </style>
