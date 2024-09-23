@@ -47,11 +47,11 @@ onMounted(async () => {
     <nav class="w-dvw p-4 flex items-start justify-between">
       <div class="flex items-center gap-2 text-sm">
         <img class="w-5" src="@/assets/logo.png" />
-        <div class="">
+        <div>
           <span class="text-[#01b695]">ISTR</span>WRK<span
             class="text-[#eeb3e7]"
-            >2DAY</span
-          >
+            >2DAY
+          </span>
         </div>
       </div>
 
@@ -81,32 +81,30 @@ onMounted(async () => {
 
       <div class="w-1/2">
         <div class="text-3xl">
-          <div v-if="isLoading">
-            <h2>{{ randomLoadingMessage }}</h2>
-            <img class="w-60 self-center mt-4" src="@/assets/loading2.gif" />
-            <br />
+          <div v-if="isLoading" class="flex flex-col gap-6">
+            <p>{{ randomLoadingMessage }}</p>
+            <img class="w-60" src="@/assets/loading2.gif" />
             <p class="text-sm text-gray-500">
               {{ locationPermissionMessage }}
             </p>
           </div>
 
-          <!-- <h2 v-else-if="geoError">
+          <!-- <p v-else-if="geoError">
             {{ randomErrorMessage }}
-          </h2> -->
+          </p> -->
 
           <div
-            class="flex flex-col"
+            class="flex flex-col gap-4"
             v-else-if="userLocation?.country_code != 'au'"
           >
-            <h2 class="text-3xl">
+            <p class="text-3xl">
               {{ randomNotAustraliaMessage }}
-            </h2>
-            <img class="w-fit self-center mt-4" src="@/assets/no-access.png" />
+            </p>
+            <img class="w-fit self-center" src="@/assets/no-access.png" />
           </div>
 
-          <h2 v-else>
-            <br />
-            <div v-if="todaysHoliday">
+          <div v-else>
+            <div v-if="todaysHoliday" class="flex flex-col gap-6">
               <!-- <div>It's {{ todaysHoliday.localName }}!</div> -->
               <div class="text-4xl underline">It's a Holiday!</div>
               <div class="text-3xl">{{ randomHolidayMessage }}</div>
@@ -118,7 +116,7 @@ onMounted(async () => {
               />
             </div>
 
-            <div v-else>
+            <div v-else class="flex flex-col gap-4">
               <div>Sorry...</div>
               <div class="text-4xl">{{ randomWorkdayMessage }}</div>
               <img
@@ -129,7 +127,7 @@ onMounted(async () => {
               />
               <Countdown :all-holidays="allHolidays" />
             </div>
-          </h2>
+          </div>
         </div>
       </div>
     </div>
@@ -143,6 +141,5 @@ onMounted(async () => {
   height: auto;
   display: block;
   margin: 0 auto;
-  margin-top: 2rem;
 }
 </style>
