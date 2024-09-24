@@ -5,35 +5,33 @@
  * - more holiday info if holiday
  * - celebration animation
  */
-import { onMounted, ref } from "vue";
-import { useHolidayInfo } from "@/composables";
-import { getRandomGif } from "@/api";
+import { onMounted, ref } from 'vue';
+import { useHolidayInfo } from '@/composables';
+import { getRandomGif } from '@/api';
 import {
   workdayMessages,
   holidayMessages,
   loadingMessages,
   locationPermissionMessage,
-  errorMessages,
   notInAustraliaMessages,
-} from "@/messages";
-import { getRandomMessage } from "@/utils";
-import { Countdown, MainLogo, Navbar } from "@/components";
+} from '@/messages';
+import { getRandomMessage } from '@/utils';
+import { Countdown, MainLogo, Navbar } from '@/components';
 
-const { geoError, isLoading, userLocation, todaysHoliday, allHolidays } =
+const { isLoading, userLocation, todaysHoliday, allHolidays } =
   useHolidayInfo();
 
-const randomErrorMessage = getRandomMessage(errorMessages);
 const randomLoadingMessage = getRandomMessage(loadingMessages);
 const randomWorkdayMessage = getRandomMessage(workdayMessages);
 const randomHolidayMessage = getRandomMessage(holidayMessages);
 const randomNotAustraliaMessage = getRandomMessage(notInAustraliaMessages);
 
-const holidayGif = ref("");
-const workdayGif = ref("");
+const holidayGif = ref('');
+const workdayGif = ref('');
 
 onMounted(async () => {
-  holidayGif.value = await getRandomGif("celebrate");
-  workdayGif.value = await getRandomGif("sad");
+  holidayGif.value = await getRandomGif('celebrate');
+  workdayGif.value = await getRandomGif('sad');
 });
 </script>
 
