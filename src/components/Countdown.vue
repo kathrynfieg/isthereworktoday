@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from "vue";
-import dayjs from "dayjs";
-import duration from "dayjs/plugin/duration";
-import { Holiday } from "@/models";
+import { ref, onMounted, computed } from 'vue';
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+import { Holiday } from '@/models';
 
 const props = defineProps({
   allHolidays: {
@@ -62,8 +62,8 @@ const initializeCountdown = () => {
 
 const formattedNextHolidayDate = computed(() => {
   return nextHoliday.value
-    ? dayjs(nextHoliday.value.date).format("MMMM D, YYYY")
-    : "";
+    ? dayjs(nextHoliday.value.date).format('MMMM D, YYYY')
+    : '';
 });
 
 onMounted(() => {
@@ -75,10 +75,10 @@ onMounted(() => {
   <div v-if="nextHoliday">
     <div class="text-2xl flex flex-col gap-6">
       <div>
-        Next one's
+        Your next holiday is
         <span class="underline">{{ nextHoliday.localName }}</span> on
         <span class="underline">{{ formattedNextHolidayDate }}</span
-        >. Thats in
+        >!
       </div>
       <div
         class="flex items-center gap-2 justify-center self-center bg-gray-200 p-4 rounded-md -rotate-2 w-fit"

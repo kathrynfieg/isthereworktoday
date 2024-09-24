@@ -6,21 +6,17 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
-  /* font-family: 'Concert One', cursive; */
-  /* font-family: 'Cabin', sans-serif; */
-}
-
 body {
-  /* font-family: 'Playpen Sans', sans-serif; */
-  font-family: 'Concert One', cursive;
-  /* font-family: 'Cabin', sans-serif; */
+  font-family: 'Concert One', sans-serif;
 
   line-height: 1.6;
   margin: 0;
   padding: 0;
-  background-color: #fafafa;
+  /* background-color: #94cde0; */
+  /* background: radial-gradient(circle, #ff7e5f, #feb47b); */
+  /* background: linear-gradient(to right, #ff7e5f, #feb47b); */
+  /* background: linear-gradient(45deg, #ff66c4, #ffde59); */
+  background: radial-gradient(circle, #ffde59, #0cc0df);
 }
 
 .container {
