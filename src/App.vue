@@ -46,7 +46,7 @@ onMounted(async () => {
         <MainLogo />
       </div>
 
-      <div class="w-full md:w-1/2 bg-white p-10 rounded-lg">
+      <div class="w-full md:w-1/2 bg-white p-4 md:p-10 rounded-lg">
         <div class="text-3xl">
           <div v-if="isLoading" class="flex flex-col gap-6">
             <p>{{ randomLoadingMessage }}</p>
