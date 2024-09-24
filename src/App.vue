@@ -8,8 +8,8 @@
  * - readme update for .env
  * - celebration animation
  */
-import { useHolidayInfo } from '@/composables';
-import { getRandomGif } from '@/api';
+import { useHolidayInfo } from "@/composables";
+import { getRandomGif } from "@/api";
 
 const { geoError, isLoading, userLocation, todaysHoliday, allHolidays } =
   useHolidayInfo();
@@ -21,12 +21,12 @@ import {
   locationPermissionMessage,
   errorMessages,
   notInAustraliaMessages,
-} from '@/messages';
-import { getRandomMessage } from '@/utils';
-import { onMounted, ref } from 'vue';
-import Countdown from '@/components/Countdown.vue';
-import MainLogo from '@/components/MainLogo.vue';
-import Navbar from '@/components/Navbar.vue';
+} from "@/messages";
+import { getRandomMessage } from "@/utils";
+import { onMounted, ref } from "vue";
+import Countdown from "@/components/Countdown.vue";
+import MainLogo from "@/components/MainLogo.vue";
+import Navbar from "@/components/Navbar.vue";
 
 const randomErrorMessage = getRandomMessage(errorMessages);
 const randomLoadingMessage = getRandomMessage(loadingMessages);
@@ -34,12 +34,12 @@ const randomWorkdayMessage = getRandomMessage(workdayMessages);
 const randomHolidayMessage = getRandomMessage(holidayMessages);
 const randomNotAustraliaMessage = getRandomMessage(notInAustraliaMessages);
 
-const holidayGif = ref('');
-const workdayGif = ref('');
+const holidayGif = ref("");
+const workdayGif = ref("");
 
 onMounted(async () => {
-  holidayGif.value = await getRandomGif('celebrate');
-  workdayGif.value = await getRandomGif('sad');
+  holidayGif.value = await getRandomGif("celebrate");
+  workdayGif.value = await getRandomGif("sad");
 });
 </script>
 
@@ -92,8 +92,10 @@ onMounted(async () => {
             </div>
 
             <div v-else class="flex flex-col gap-4">
-              <div>Sorry...</div>
-              <div class="text-4xl">{{ randomWorkdayMessage }}</div>
+              <div>
+                <div>Sorry...</div>
+                <div class="text-4xl">{{ randomWorkdayMessage }}</div>
+              </div>
               <img
                 v-if="workdayGif"
                 class="gif"
@@ -111,9 +113,8 @@ onMounted(async () => {
 
 <style scoped>
 .gif {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
+  max-height: 130px;
+  width: auto;
   display: block;
   margin: 0 auto;
 }

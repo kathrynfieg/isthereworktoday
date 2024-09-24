@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 
 defineProps({
   location: {
@@ -10,7 +10,7 @@ defineProps({
 </script>
 
 <template>
-  <nav class="w-dvw p-4 flex items-start justify-between flex-wrap">
+  <nav class="w-dvw p-2 flex items-center justify-between flex-wrap">
     <div class="flex items-center gap-2 text-sm">
       <img class="w-5" src="@/assets/logo.png" />
       <div>
@@ -21,9 +21,9 @@ defineProps({
     </div>
 
     <div class="text-right flex gap-2">
-      <div>
+      <div class="bg-white px-4 py-2 rounded-md">
         <span v-if="location">{{ location }} •</span>
-        {{ dayjs(new Date()).format('MMMM D, YYYY') }}
+        {{ dayjs(new Date()).format("MMMM D, YYYY") }}
       </div>
     </div>
   </nav>
