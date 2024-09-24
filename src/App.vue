@@ -2,18 +2,12 @@
 /**
  * TODO
  * - Improve geo error check
- * - Responsive design mobile
  * - more holiday info if holiday
- * - countdown for next holiday
- * - readme update for .env
  * - celebration animation
  */
+import { onMounted, ref } from "vue";
 import { useHolidayInfo } from "@/composables";
 import { getRandomGif } from "@/api";
-
-const { geoError, isLoading, userLocation, todaysHoliday, allHolidays } =
-  useHolidayInfo();
-
 import {
   workdayMessages,
   holidayMessages,
@@ -23,10 +17,10 @@ import {
   notInAustraliaMessages,
 } from "@/messages";
 import { getRandomMessage } from "@/utils";
-import { onMounted, ref } from "vue";
-import Countdown from "@/components/Countdown.vue";
-import MainLogo from "@/components/MainLogo.vue";
-import Navbar from "@/components/Navbar.vue";
+import { Countdown, MainLogo, Navbar } from "@/components";
+
+const { geoError, isLoading, userLocation, todaysHoliday, allHolidays } =
+  useHolidayInfo();
 
 const randomErrorMessage = getRandomMessage(errorMessages);
 const randomLoadingMessage = getRandomMessage(loadingMessages);
@@ -80,8 +74,9 @@ onMounted(async () => {
 
           <div v-else>
             <div v-if="todaysHoliday" class="flex flex-col gap-6">
-              <!-- <div>It's {{ todaysHoliday.localName }}!</div> -->
-              <div class="text-4xl underline">It's a Holiday!</div>
+              <div class="text-4xl underline">
+                It's {{ todaysHoliday.localName }}!
+              </div>
               <div class="text-3xl">{{ randomHolidayMessage }}</div>
               <img
                 v-if="holidayGif"
