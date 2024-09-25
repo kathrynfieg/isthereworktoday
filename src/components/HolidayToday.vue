@@ -34,7 +34,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="bg-white p-4 md:p-10 rounded-lg">
+  <div class="bg-white p-4 md:p-8 rounded-lg">
     <div class="text-3xl">
       <transition name="fade" mode="out-in">
         <div v-if="isLoading" class="flex flex-col gap-6">
@@ -90,3 +90,22 @@ onMounted(async () => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.gif {
+  max-height: 130px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

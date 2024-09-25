@@ -1,4 +1,4 @@
-import { computed, watchEffect } from 'vue';
+import { computed } from 'vue';
 import { useQuery } from '@tanstack/vue-query';
 import { useGeolocation } from '@vueuse/core';
 import {
@@ -63,8 +63,6 @@ export function useHolidayInfo() {
       isLoadingTodayHoliday.value ||
       !isValidCoords.value
   );
-
-  watchEffect(() => console.log('isLoading.value', isLoading.value));
 
   return {
     geoError,
