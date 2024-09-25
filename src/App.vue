@@ -19,14 +19,14 @@ const { isLoading, userLocation, todaysHoliday, allHolidays } =
 </script>
 
 <template>
-  <div class="flex flex-col min-h-dvh items-center justify-between pb-5">
+  <div class="flex flex-col min-h-dvh items-center pb-5">
     <Navbar
       class="w-full"
       :location="userLocation?.state ?? userLocation?.territory"
     />
 
     <div
-      class="flex flex-col md:flex-row gap-5 py-5 md:gap-16 justify-center items-center w-full container"
+      class="flex flex-col flex-1 md:flex-row gap-5 py-5 md:gap-16 justify-center items-center w-full container"
     >
       <div class="w-full md:w-1/2 flex flex-col justify-center">
         <MainLogo />
