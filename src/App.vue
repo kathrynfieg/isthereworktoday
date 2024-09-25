@@ -6,49 +6,50 @@
  * - celebration animation
  */
 import { useHolidayInfo } from '@/composables';
-import { HolidayToday, MainLogo, Navbar } from '@/components';
+import {
+  HolidayToday,
+  MainLogo,
+  Navbar,
+  AllHolidays,
+  Footer,
+} from '@/components';
 
 const { isLoading, userLocation, todaysHoliday, allHolidays } =
   useHolidayInfo();
 </script>
 
 <template>
-  <div class="flex flex-col min-h-dvh items-center container">
-    <Navbar :location="userLocation?.state ?? userLocation?.territory" />
+  <div class="flex flex-col min-h-dvh items-center justify-between pb-5">
+    <Navbar
+      class="w-full"
+      :location="userLocation?.state ?? userLocation?.territory"
+    />
 
     <div
-      class="flex-1 flex flex-col md:flex-row gap-5 py-5 md:gap-16 justify-center items-center w-full"
+      class="flex flex-col md:flex-row gap-5 py-5 md:gap-16 justify-center items-center w-full container"
     >
       <div class="w-full md:w-1/2 flex flex-col justify-center">
         <MainLogo />
       </div>
 
-      <div class="w-full md:w-1/2 bg-white p-4 md:p-10 rounded-lg">
+      <div class="w-full md:w-1/2">
         <HolidayToday
           :is-loading="isLoading"
           :todays-holiday="todaysHoliday"
           :all-holidays="allHolidays"
+          :user-location="userLocation"
         />
       </div>
     </div>
+
+    <div v-if="!isLoading && allHolidays">View all holidays below v</div>
   </div>
+
+  <AllHolidays
+    v-if="!isLoading && allHolidays && userLocation"
+    :all-holidays="allHolidays"
+    :user-location="userLocation"
+  />
+
+  <Footer />
 </template>
-
-<style scoped>
-.gif {
-  max-height: 130px;
-  width: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>
