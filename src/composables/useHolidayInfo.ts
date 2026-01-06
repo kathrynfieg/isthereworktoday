@@ -12,10 +12,11 @@ export function useHolidayInfo() {
   const { coords, error, isSupported } = useGeolocation();
 
   const isValidCoords = computed(() => {
+    if (!coords.value) return false;
     const latitude = coords.value.latitude;
     const longitude = coords.value.longitude;
     return (
-      isSupported &&
+      isSupported.value &&
       typeof latitude === 'number' &&
       typeof longitude === 'number' &&
       isFinite(latitude) &&
